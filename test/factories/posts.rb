@@ -2,11 +2,11 @@ FactoryBot.define do
   factory :post do
     title { Faker::Lorem.sentence }
     content { Faker::Lorem.paragraph }
-    published { 
+    published {
       r = rand(0..1)
       if r == 0
         false
-      else 
+      else
         true
       end
      }
