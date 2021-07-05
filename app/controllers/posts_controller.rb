@@ -1,4 +1,10 @@
 class PostsController < ApplicationController
+  rescue_from Exception do |e|
+    render json: {error: e.message}, status: :internal_error
+  end
+  rescue_from ActiveRecord::RecordInvalid do |e|
+    render json: {error: e.message}, status: :unprocessable_entity
+  end
   # GET /post
   def index
     @posts = Post.where(published: true)
@@ -14,7 +20,7 @@ class PostsController < ApplicationController
   # GET /posts/
   def create
     @post = Post.create!(create_params)
-    render json: @post, status: :created
+    render json: @post, status: :crated
   end
 
   # PUT /posts/{id}
