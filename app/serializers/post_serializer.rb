@@ -3,11 +3,10 @@ class PostSerializer < ActiveModel::Serializer
 
   def author
     user = self.object.user
-    { 
+    {
       name: user.name,
       email: user.email,
       id: user.id
     }
-
   end
 end
